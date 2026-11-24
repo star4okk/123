@@ -80,6 +80,183 @@
     }
 
     /* ==========================================
+       АНИМАЦИИ ТЕКСТА И ПОЯВЛЕНИЯ ЭЛЕМЕНТОВ
+       ========================================== */
+    .reveal-text {
+      opacity: 0;
+      transform: translateY(26px);
+      filter: blur(4px);
+      transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    .reveal-text.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Эффект раскрытия букв (расширение трекинга) для надписей */
+    .reveal-eyebrow {
+      opacity: 0;
+      letter-spacing: 0.44em;
+      transform: translateY(12px);
+      transition:
+        opacity 0.95s ease,
+        letter-spacing 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-eyebrow.is-visible {
+      opacity: 1;
+      letter-spacing: 0.28em;
+      transform: translateY(0);
+    }
+
+    /* Мягкое проявление с боковым сдвигом для тайминга */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-left.is-visible,
+    .reveal-right.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Задержки для каскадного появления */
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+    .delay-4 { transition-delay: 0.48s; }
+
+    /* Появление главного экрана после открытия конверта */
+    .hero-anim-eyebrow,
+    .hero-anim-name-1,
+    .hero-anim-amp,
+    .hero-anim-name-2,
+    .hero-anim-side-l,
+    .hero-anim-side-r,
+    .hero-anim-photo,
+    .hero-anim-btn {
+      opacity: 0;
+      transition:
+        opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        letter-spacing 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.95s ease;
+    }
+
+    .hero-anim-eyebrow {
+      transform: translateY(14px);
+      letter-spacing: 0.42em;
+    }
+
+    .hero-anim-name-1 {
+      display: inline-block;
+      transform: translateY(28px);
+      filter: blur(5px);
+    }
+
+    .hero-anim-amp {
+      display: inline-block;
+      transform: scale(0.7) rotate(-8deg);
+    }
+
+    .hero-anim-name-2 {
+      display: inline-block;
+      transform: translateY(28px);
+      filter: blur(5px);
+    }
+
+    .hero-anim-side-l {
+      transform: translateX(-22px);
+    }
+
+    .hero-anim-side-r {
+      transform: translateX(22px);
+    }
+
+    .hero-anim-photo {
+      transform: scale(0.95) translateY(18px);
+    }
+
+    .hero-anim-btn {
+      transform: translateY(18px);
+    }
+
+    body.site-revealed .hero-anim-eyebrow {
+      opacity: 1;
+      transform: translateY(0);
+      letter-spacing: 0.28em;
+      transition-delay: 0.05s;
+    }
+
+    body.site-revealed .hero-anim-name-1 {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+      transition-delay: 0.18s;
+    }
+
+    body.site-revealed .hero-anim-amp {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+      transition-delay: 0.32s;
+    }
+
+    body.site-revealed .hero-anim-name-2 {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+      transition-delay: 0.42s;
+    }
+
+    body.site-revealed .hero-anim-photo {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      transition-delay: 0.52s;
+    }
+
+    body.site-revealed .hero-anim-side-l,
+    body.site-revealed .hero-anim-side-r {
+      opacity: 1;
+      transform: translateX(0);
+      transition-delay: 0.65s;
+    }
+
+    body.site-revealed .hero-anim-btn {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.78s;
+    }
+
+    /* Живой shimmer-перелив на рукописной подписи */
+    .signature-animated {
+      background: linear-gradient(110deg, #45553A 35%, #8CA37A 50%, #45553A 65%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: signatureShimmer 5.5s ease-in-out infinite;
+    }
+
+    @keyframes signatureShimmer {
+      0%, 100% { background-position: 100% center; }
+      50% { background-position: 0% center; }
+    }
+
+    /* ==========================================
        СТАРТОВЫЙ ЭКРАН С КОНВЕРТОМ
        ========================================== */
     .envelope-overlay {
@@ -535,19 +712,24 @@
       letter-spacing: 0.2em;
     }
 
+    .hero-photo, .letter-photo, .venue-img {
+      background-color: #DCD6C8;
+      background-image: linear-gradient(135deg, #E6E1D5 0%, #CFC7B4 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 22px 54px rgba(69, 85, 58, 0.15);
+    }
+
     .hero-photo {
       width: 100%;
       height: 440px;
-      overflow: hidden;
-      position: relative;
-      background: var(--bg-card);
-      box-shadow: 0 22px 54px rgba(69, 85, 58, 0.16);
     }
 
-    .hero-photo img {
+    .hero-photo img, .letter-photo img, .venue-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
       transition: transform 1.2s ease;
     }
 
@@ -634,14 +816,6 @@
 
     .letter-photo {
       height: 460px;
-      overflow: hidden;
-      box-shadow: 0 22px 54px rgba(69, 85, 58, 0.14);
-    }
-
-    .letter-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .letter-body h2 {
@@ -662,6 +836,7 @@
       font-size: 1.75rem;
       color: var(--leaf-dark);
       margin-top: 24px;
+      display: inline-block;
     }
 
     .date-countdown-wrap {
@@ -745,6 +920,12 @@
       border-radius: 50%;
       font-weight: 500;
       box-shadow: 0 4px 14px rgba(69, 85, 58, 0.42);
+      animation: heartBeatDate 2.6s ease-in-out infinite;
+    }
+
+    @keyframes heartBeatDate {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.09); }
     }
 
     .cal-days span.wedding-day::after {
@@ -794,6 +975,12 @@
       line-height: 1;
       color: var(--leaf-dark);
       display: block;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+    }
+
+    .timer-val.tick {
+      transform: translateY(-4px);
+      opacity: 0.72;
     }
 
     .timer-unit {
@@ -903,6 +1090,9 @@
       line-height: 1.45;
     }
 
+    /* ==========================================
+       ЛОКАЦИЯ (БЕЗ КАРТЫ — ФОТО + КНОПКА ПОСМОТРЕТЬ НА КАРТЕ)
+       ========================================== */
     .venue-section {
       background:
         radial-gradient(circle at 20% 80%, rgba(143, 161, 130, 0.22) 0%, transparent 56%),
@@ -913,61 +1103,31 @@
     .venue-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .venue-media-col {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      gap: 48px;
+      align-items: center;
     }
 
     .venue-img {
-      height: 280px;
-      overflow: hidden;
-      box-shadow: 0 22px 54px rgba(69, 85, 58, 0.14);
-    }
-
-    .venue-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .map-embed-box {
-      width: 100%;
-      height: 310px;
-      overflow: hidden;
-      border: 1px solid var(--line-color);
-      box-shadow: 0 16px 38px rgba(69, 85, 58, 0.12);
-      background: #F6F4EE;
-    }
-
-    .map-embed-box iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
+      height: 390px;
     }
 
     .venue-details {
       background: rgba(246, 244, 238, 0.85);
       border: 1px solid var(--line-color);
-      padding: 36px 32px;
+      padding: 40px 34px;
       box-shadow: 0 16px 40px rgba(69, 85, 58, 0.08);
     }
 
     .venue-details h3 {
-      font-size: 2.05rem;
+      font-size: 2.1rem;
       margin-bottom: 14px;
       line-height: 1.2;
     }
 
     .venue-details p {
       color: var(--text-muted);
-      margin-bottom: 24px;
-      font-size: 0.94rem;
+      margin-bottom: 26px;
+      font-size: 0.95rem;
     }
 
     .palette-grid {
@@ -1145,6 +1305,20 @@
       opacity: 0.65;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-text, .reveal-eyebrow, .reveal-left, .reveal-right,
+      .hero-anim-eyebrow, .hero-anim-name-1, .hero-anim-amp, .hero-anim-name-2,
+      .hero-anim-side-l, .hero-anim-side-r, .hero-anim-photo, .hero-anim-btn {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+      }
+      .signature-animated, .cal-days span.wedding-day {
+        animation: none !important;
+      }
+    }
+
     @media (max-width: 860px) {
       nav { padding: 12px 18px; }
       .nav-links { display: none; }
@@ -1158,14 +1332,13 @@
         margin: 8px auto 32px;
       }
       .hero-photo { height: 340px; }
-      .letter-photo, .venue-img { height: 240px; }
-      .map-embed-box { height: 270px; }
+      .letter-photo, .venue-img { height: 270px; }
       .letter-layout, .venue-grid, .calendar-and-timer {
         grid-template-columns: 1fr;
         gap: 28px;
       }
       .venue-details {
-        padding: 24px 20px;
+        padding: 26px 20px;
       }
       .calendar-card {
         max-width: 100%;
@@ -1321,7 +1494,7 @@
     </div>
   </div>
 
-  <!-- ФОНОВЫЙ СЛОЙ: ЭВКАЛИПТ И АТЛАСНЫЕ ЛЕНТЫ В МИНИМАЛИСТИЧНОМ СТИЛЕ -->
+  <!-- ФОНОВЫЙ СЛОЙ: ЭВКАЛИПТ И АТЛАСНЫЕ ЛЕНТЫ -->
   <div class="botanical-layer" aria-hidden="true">
     <svg style="position:fixed;inset:0;width:100%;height:100%;" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M-60 220C190 160 360 340 620 260C860 185 1030 70 1260 140" stroke="#8FA182" stroke-width="18" stroke-opacity="0.14" stroke-linecap="round"/>
@@ -1403,37 +1576,47 @@
 
   <!-- 1. Главный экран -->
   <header class="hero">
-    <div class="eyebrow">Приглашение на свадьбу</div>
-    <h1 class="hero-names">Максим <em>&</em> Дарья</h1>
+    <div class="eyebrow hero-anim-eyebrow">Приглашение на свадьбу</div>
+    <h1 class="hero-names">
+      <span class="hero-anim-name-1">Максим</span>
+      <em class="hero-anim-amp">&</em>
+      <span class="hero-anim-name-2">Дарья</span>
+    </h1>
 
     <div class="hero-grid">
-      <div class="hero-side-info">17 Июля 2027</div>
-      <div class="hero-photo">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=85" alt="Максим и Дарья">
+      <div class="hero-side-info hero-anim-side-l">17 Июля 2027</div>
+      <div class="hero-photo hero-anim-photo">
+        <img
+          src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=900"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85';"
+          alt="Максим и Дарья">
       </div>
-      <div class="hero-side-info">Суббота • 15:30</div>
+      <div class="hero-side-info hero-anim-side-r">Суббота • 15:30</div>
     </div>
 
-    <a href="#rsvp" class="btn-outline">Подтвердить присутствие</a>
+    <a href="#rsvp" class="btn-outline hero-anim-btn">Подтвердить присутствие</a>
   </header>
 
   <!-- 2. Приветственное письмо -->
   <section id="letter">
     <div class="container">
       <div class="letter-layout">
-        <div class="letter-photo">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=85" alt="История любви">
+        <div class="letter-photo reveal-text">
+          <img
+            src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=900"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85';"
+            alt="История любви">
         </div>
         <div class="letter-body">
-          <div class="eyebrow" style="margin-bottom: 14px;">Дорогие родные и друзья</div>
-          <h2>Один день, который останется в памяти навсегда</h2>
-          <p>
+          <div class="eyebrow reveal-eyebrow" style="margin-bottom: 14px;">Дорогие родные и друзья</div>
+          <h2 class="reveal-text delay-1">Один день, который останется в памяти навсегда</h2>
+          <p class="reveal-text delay-2">
             Совсем скоро состоится один из самых важных и трогательных дней в нашей жизни — мы станем семьёй.
           </p>
-          <p>
+          <p class="reveal-text delay-3">
             Нам невероятно хочется разделить эту радость с людьми, которые были рядом, поддерживали и вдохновляли нас. Приглашаем вас стать частью нашего праздника, наполненного искренними словами, тёплой атмосферой и красивыми моментами.
           </p>
-          <div class="signature">С любовью, Максим и Дарья</div>
+          <div class="signature signature-animated reveal-text delay-4">С любовью, Максим и Дарья</div>
         </div>
       </div>
     </div>
@@ -1443,13 +1626,13 @@
   <section id="calendar" class="date-countdown-wrap">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow">Save The Date</div>
-        <h2 class="section-title">17 июля 2027 года</h2>
-        <p class="section-lead">Сохраните эту дату в своём календаре — мы будем ждать встречи с вами!</p>
+        <div class="eyebrow reveal-eyebrow">Save The Date</div>
+        <h2 class="section-title reveal-text delay-1">17 июля 2027 года</h2>
+        <p class="section-lead reveal-text delay-2">Сохраните эту дату в своём календаре — мы будем ждать встречи с вами!</p>
       </div>
 
       <div class="calendar-and-timer">
-        <div class="calendar-card">
+        <div class="calendar-card reveal-text delay-1">
           <div class="cal-header">
             <div class="cal-month">Июль</div>
             <div class="cal-year">2027</div>
@@ -1506,10 +1689,10 @@
         </div>
 
         <div class="countdown-panel">
-          <div class="eyebrow" style="margin-bottom: 10px;">Обратный отсчёт</div>
-          <h3 style="font-size: 2.3rem; line-height: 1.2;">До нашей свадьбы осталось</h3>
+          <div class="eyebrow reveal-eyebrow" style="margin-bottom: 10px;">Обратный отсчёт</div>
+          <h3 class="reveal-text delay-1" style="font-size: 2.3rem; line-height: 1.2;">До нашей свадьбы осталось</h3>
 
-          <div class="timer-row" id="timer">
+          <div class="timer-row reveal-text delay-2" id="timer">
             <div class="timer-cell">
               <span class="timer-val" id="days">00</span>
               <span class="timer-unit">Дней</span>
@@ -1528,7 +1711,7 @@
             </div>
           </div>
 
-          <p style="font-size: 0.9rem; color: var(--text-muted);">
+          <p class="reveal-text delay-3" style="font-size: 0.9rem; color: var(--text-muted);">
             Суббота, 17.07.2027 • Начало сбора гостей в 15:30
           </p>
         </div>
@@ -1540,8 +1723,8 @@
   <section id="timing" class="timing-section">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow">Программа дня</div>
-        <h2 class="section-title">Тайминг торжества</h2>
+        <div class="eyebrow reveal-eyebrow">Программа дня</div>
+        <h2 class="section-title reveal-text delay-1">Тайминг торжества</h2>
       </div>
 
       <div class="timeline-wave-wrap" id="timelineWaveWrap">
@@ -1553,7 +1736,7 @@
         <div class="timeline-items">
           <!-- Шаг 1: слева -->
           <div class="timeline-step">
-            <div class="timeline-card">
+            <div class="timeline-card reveal-left">
               <div class="timeline-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 52 H52 L49 28 L32 14 L15 28 Z"/>
@@ -1570,7 +1753,7 @@
 
           <!-- Шаг 2: справа -->
           <div class="timeline-step">
-            <div class="timeline-card">
+            <div class="timeline-card reveal-right">
               <div class="timeline-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M32 52 C18 42 12 31 15 21 C18 14 27 14 32 21 C37 14 46 14 49 21 C52 31 46 42 32 52 Z"/>
@@ -1586,7 +1769,7 @@
 
           <!-- Шаг 3: слева -->
           <div class="timeline-step">
-            <div class="timeline-card">
+            <div class="timeline-card reveal-left">
               <div class="timeline-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M16 44 L14 27 C14 24 20 24 20 27 L19 44"/>
@@ -1604,7 +1787,7 @@
 
           <!-- Шаг 4: справа -->
           <div class="timeline-step">
-            <div class="timeline-card">
+            <div class="timeline-card reveal-right">
               <div class="timeline-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M10 44 L15 34 H45 L52 38 L54 44 Z"/>
@@ -1625,37 +1808,30 @@
     </div>
   </section>
 
-  <!-- 5. Локация (Ресторан «Звёздный ключ», г. Елец, Липецкая область + Яндекс Карты) -->
+  <!-- 5. Локация (Ресторан «Звёздный ключ» + кнопка Посмотреть на карте) -->
   <section id="venue" class="venue-section">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow">Место проведения</div>
-        <h2 class="section-title">Локация праздника</h2>
+        <div class="eyebrow reveal-eyebrow">Место проведения</div>
+        <h2 class="section-title reveal-text delay-1">Локация праздника</h2>
       </div>
 
       <div class="venue-grid">
-        <div class="venue-media-col">
-          <div class="venue-img">
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85" alt="Ресторан Звёздный ключ">
-          </div>
-
-          <div class="map-embed-box">
-            <iframe
-              src="https://yandex.ru/map-widget/v1/?ll=38.456726%2C52.601577&z=14.65&pt=38.456726,52.601577,pm2rdm&text=%D0%97%D0%B2%D1%91%D0%B7%D0%B4%D0%BD%D1%8B%D0%B9%20%D0%BA%D0%BB%D1%8E%D1%87"
-              allowfullscreen="true"
-              title="Яндекс Карты — ресторан Звёздный ключ">
-            </iframe>
-          </div>
+        <div class="venue-img reveal-text">
+          <img
+            src="https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=900"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85';"
+            alt="Ресторан Звёздный ключ">
         </div>
 
-        <div class="venue-details">
-          <div class="eyebrow" style="margin-bottom: 10px;">Банкетный зал</div>
-          <h3>Ресторан «Звёздный ключ»</h3>
-          <p>
+        <div class="venue-details reveal-text delay-1">
+          <div class="eyebrow reveal-eyebrow" style="margin-bottom: 10px;">Банкетный зал</div>
+          <h3 class="reveal-text delay-2">Ресторан «Звёздный ключ»</h3>
+          <p class="reveal-text delay-3">
             г. Елец, Липецкая область.<br><br>
-            Уютная площадка для торжества — ждём вас в гости, чтобы вместе отпраздновать этот день. Для построения маршрута откройте точку в Яндекс Картах.
+            Уютная площадка для торжества — ждём вас в гости, чтобы вместе отпраздновать этот день. Для построения маршрута откройте локацию на карте.
           </p>
-          <a href="https://yandex.ru/maps/org/zvyozdny_klyuch/88614744117/?ll=38.456726%2C52.601577&z=14.65" target="_blank" rel="noopener noreferrer" class="btn-outline">Открыть в Яндекс Картах</a>
+          <a href="https://yandex.ru/maps/org/zvyozdny_klyuch/88614744117/?ll=38.456726%2C52.601577&z=14.65" target="_blank" rel="noopener noreferrer" class="btn-outline reveal-text delay-4">Посмотреть на карте</a>
         </div>
       </div>
     </div>
@@ -1665,13 +1841,13 @@
   <section id="dresscode">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow">Эстетика вечера</div>
-        <h2 class="section-title">Дресс-код</h2>
-        <p class="section-lead">
+        <div class="eyebrow reveal-eyebrow">Эстетика вечера</div>
+        <h2 class="section-title reveal-text delay-1">Дресс-код</h2>
+        <p class="section-lead reveal-text delay-2">
           Нам будет очень приятно, если при выборе образов вы поддержите спокойную природную палитру нашей свадьбы.
         </p>
 
-        <div class="palette-grid">
+        <div class="palette-grid reveal-text delay-3">
           <div class="color-item">
             <div class="color-tone" style="background: #EFECE6;"></div>
             <div class="color-name">Айвори</div>
@@ -1696,17 +1872,17 @@
       </div>
 
       <div class="notes-grid">
-        <div class="note-box">
+        <div class="note-box reveal-text delay-1">
           <span class="note-num">01.</span>
           <h3>Подарки</h3>
           <p>Ваши тёплые пожелания в конвертах станут лучшим вкладом в наше свадебное путешествие и семейные мечты.</p>
         </div>
-        <div class="note-box">
+        <div class="note-box reveal-text delay-2">
           <span class="note-num">02.</span>
           <h3>Цветы</h3>
           <p>Мы уезжаем сразу после торжества и не успеем насладиться букетами, поэтому вместо цветов будем рады бутылочке хорошего вина.</p>
         </div>
-        <div class="note-box">
+        <div class="note-box reveal-text delay-3">
           <span class="note-num">03.</span>
           <h3>Координатор</h3>
           <p>По всем вопросам в день свадьбы вам с радостью поможет наш организатор Анна: <strong>+7 (999) 123-45-67</strong>.</p>
@@ -1719,12 +1895,12 @@
   <section id="rsvp" class="rsvp-wrap">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow">RSVP</div>
-        <h2 class="section-title">Анкета гостя</h2>
-        <p class="section-lead">Пожалуйста, подтвердите своё присутствие до 1 июля 2027 года.</p>
+        <div class="eyebrow reveal-eyebrow">RSVP</div>
+        <h2 class="section-title reveal-text delay-1">Анкета гостя</h2>
+        <p class="section-lead reveal-text delay-2">Пожалуйста, подтвердите своё присутствие до 1 июля 2027 года.</p>
       </div>
 
-      <div class="rsvp-box">
+      <div class="rsvp-box reveal-text delay-2">
         <form id="weddingForm">
           <div class="field">
             <label for="guestName">Имя и фамилия</label>
@@ -1780,8 +1956,8 @@
   </section>
 
   <footer>
-    <div class="footer-names">Максим & Дарья</div>
-    <div class="footer-date">17.07.2027 • До скорой встречи</div>
+    <div class="footer-names reveal-text">Максим & Дарья</div>
+    <div class="footer-date reveal-eyebrow delay-1">17.07.2027 • До скорой встречи</div>
   </footer>
 
   <script>
@@ -1802,6 +1978,7 @@
       setTimeout(() => {
         envelopeOverlay.classList.add('fade-out');
         document.body.classList.remove('locked');
+        document.body.classList.add('site-revealed');
         document.body.style.overflow = '';
         document.body.style.height = '';
         document.body.style.touchAction = '';
@@ -1816,10 +1993,40 @@
       }
     });
 
-    // Надёжный парсинг даты для всех мобильных браузеров (iOS Safari / Android Chrome)
+    // Наблюдатель за появлением текста при скролле
+    const revealElements = document.querySelectorAll('.reveal-text, .reveal-eyebrow, .reveal-left, .reveal-right');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.14,
+        rootMargin: '0px 0px -36px 0px'
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('is-visible'));
+    }
+
+    // Таймер обратного отсчёта с плавным импульсом смены цифр
     const WEDDING_DATE = new Date(2027, 6, 17, 15, 30, 0).getTime();
     const TELEGRAM_BOT_TOKEN = '9063254657:AAHWHTOgwowIG_Aj3DX_zy8PnBl3EgIbdoE';
     const TELEGRAM_CHAT_ID = '709942397';
+
+    function animateDigitChange(el, newVal) {
+      if (el.textContent !== newVal) {
+        el.classList.add('tick');
+        setTimeout(() => {
+          el.textContent = newVal;
+          el.classList.remove('tick');
+        }, 120);
+      }
+    }
 
     function updateTimer() {
       const daysEl = document.getElementById("days");
@@ -1839,15 +2046,15 @@
       }
 
       const totalSeconds = Math.floor(distance / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
+      const days = String(Math.floor(totalSeconds / 86400)).padStart(2, '0');
+      const hours = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
+      const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      const seconds = String(totalSeconds % 60).padStart(2, '0');
 
-      daysEl.textContent = String(days).padStart(2, '0');
-      hoursEl.textContent = String(hours).padStart(2, '0');
-      minutesEl.textContent = String(minutes).padStart(2, '0');
-      secondsEl.textContent = String(seconds).padStart(2, '0');
+      animateDigitChange(daysEl, days);
+      animateDigitChange(hoursEl, hours);
+      animateDigitChange(minutesEl, minutes);
+      animateDigitChange(secondsEl, seconds);
     }
 
     updateTimer();
@@ -1870,7 +2077,6 @@
       const rect = waveWrap.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-      // Прогресс от момента входа блока тайминга снизу экрана до его прохождения вверх
       const startLine = viewportHeight * 0.85;
       const endLine = viewportHeight * 0.2 - rect.height;
       const rawProgress = (startLine - rect.top) / (startLine - endLine);
@@ -1896,21 +2102,45 @@
     window.addEventListener('resize', updateScrollWaveDot, { passive: true });
     updateScrollWaveDot();
 
-    document.getElementById('weddingForm').addEventListener('submit', function(e) {
+    // Отправка анкеты в Telegram
+    async function sendTelegramNotification(text) {
+      const apiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: text,
+            parse_mode: 'HTML'
+          })
+        });
+        if (response.ok) {
+          return { ok: true };
+        }
+        const errData = await response.json().catch(() => ({}));
+        return { ok: false, description: errData.description || `HTTP ${response.status}` };
+      } catch (err) {
+        const params = new URLSearchParams({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: text,
+          parse_mode: 'HTML'
+        });
+        await fetch(`${apiUrl}?${params.toString()}`, { mode: 'no-cors' });
+        return { ok: true };
+      }
+    }
+
+    document.getElementById('weddingForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const btn = this.querySelector('button[type="submit"]');
-      const name = document.getElementById('guestName').value;
+      const name = document.getElementById('guestName').value.trim();
       const attendance = document.querySelector('input[name="attendance"]:checked').value;
       const drinks = document.getElementById('drinks').value;
       const transfer = document.getElementById('transfer').value;
-      const comment = document.getElementById('comment').value || 'Без комментариев';
-
-      if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-        this.style.display = 'none';
-        document.getElementById('rsvpSuccess').style.display = 'block';
-        return;
-      }
+      const comment = document.getElementById('comment').value.trim() || 'Без комментариев';
 
       btn.disabled = true;
       btn.textContent = 'Отправка...';
@@ -1929,30 +2159,21 @@
 ` +
         `💬 <b>Комментарий:</b> ${comment}`;
 
-      fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'HTML'
-        })
-      })
-      .then(res => {
-        if (res.ok) {
+      try {
+        const result = await sendTelegramNotification(message);
+        if (result.ok) {
           this.style.display = 'none';
           document.getElementById('rsvpSuccess').style.display = 'block';
         } else {
-          alert('Ошибка отправки. Проверьте, запущен ли бот (/start) и верны ли токен и Chat ID.');
+          alert(`Ошибка Telegram: ${result.description}. Убедитесь, что вы нажали /start в боте.`);
           btn.disabled = false;
           btn.textContent = 'Отправить анкету';
         }
-      })
-      .catch(() => {
-        alert('Ошибка сети. Проверьте подключение к интернету.');
+      } catch (err) {
+        alert('Не удалось отправить анкету. Проверьте подключение к интернету.');
         btn.disabled = false;
         btn.textContent = 'Отправить анкету';
-      });
+      }
     });
   </script>
 </body>
