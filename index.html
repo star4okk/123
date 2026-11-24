@@ -99,7 +99,6 @@
       filter: blur(0);
     }
 
-    /* Эффект раскрытия букв (расширение трекинга) для надписей */
     .reveal-eyebrow {
       opacity: 0;
       letter-spacing: 0.44em;
@@ -116,7 +115,6 @@
       transform: translateY(0);
     }
 
-    /* Мягкое проявление с боковым сдвигом для тайминга */
     .reveal-left {
       opacity: 0;
       transform: translateX(-28px);
@@ -135,13 +133,11 @@
       transform: translateX(0);
     }
 
-    /* Задержки для каскадного появления */
     .delay-1 { transition-delay: 0.12s; }
     .delay-2 { transition-delay: 0.24s; }
     .delay-3 { transition-delay: 0.36s; }
     .delay-4 { transition-delay: 0.48s; }
 
-    /* Появление главного экрана после открытия конверта */
     .hero-anim-eyebrow,
     .hero-anim-name-1,
     .hero-anim-amp,
@@ -242,7 +238,6 @@
       transition-delay: 0.78s;
     }
 
-    /* Живой shimmer-перелив на рукописной подписи */
     .signature-animated {
       background: linear-gradient(110deg, #45553A 35%, #8CA37A 50%, #45553A 65%);
       background-size: 220% auto;
@@ -415,6 +410,7 @@
       transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s ease 0.45s;
     }
 
+    /* Инициалы М & Д зеленого цвета в тон печати */
     .embossed-monogram {
       position: absolute;
       top: 23%;
@@ -426,10 +422,10 @@
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      color: rgba(247, 245, 239, 0.92);
+      color: var(--leaf-dark);
       text-shadow:
-        0 1.5px 2px rgba(255, 255, 255, 0.95),
-        0 -1px 1.5px rgba(85, 80, 70, 0.32);
+        0 1px 0 rgba(255, 255, 255, 0.85),
+        0 3px 10px rgba(69, 85, 58, 0.16);
       letter-spacing: 0.04em;
       user-select: none;
       transition: opacity 0.35s ease;
@@ -437,17 +433,17 @@
 
     .embossed-monogram .letter-m,
     .embossed-monogram .letter-d {
-      font-size: clamp(2.5rem, 8vw, 3.35rem);
-      font-weight: 300;
+      font-size: clamp(2.55rem, 8vw, 3.4rem);
+      font-weight: 400;
       line-height: 1;
     }
 
     .embossed-monogram .amp-mark {
       font-style: italic;
-      font-size: clamp(1.3rem, 4.2vw, 1.75rem);
-      margin: 0 2px;
-      transform: translateY(6px);
-      opacity: 0.88;
+      font-size: clamp(1.35rem, 4.2vw, 1.8rem);
+      margin: 0 3px;
+      transform: translateY(5px);
+      color: var(--accent);
     }
 
     .embossed-leaf-svg {
@@ -504,12 +500,12 @@
 
     .seal-prompt-arc {
       position: absolute;
-      top: calc(54% + 50px);
+      top: calc(54% + 52px);
       left: 50%;
       transform: translateX(-50%);
       z-index: 6;
       width: 220px;
-      height: 64px;
+      height: 54px;
       pointer-events: none;
       display: flex;
       flex-direction: column;
@@ -531,24 +527,9 @@
       fill: #45553A;
     }
 
-    .cursor-pointer-icon {
-      position: absolute;
-      right: 16px;
-      top: 6px;
-      width: 22px;
-      height: 22px;
-      color: #45553A;
-      animation: tapHint 1.8s infinite ease-in-out;
-    }
-
     @keyframes sealPulse {
       0%, 100% { transform: translate(-50%, -50%) scale(1); }
       50% { transform: translate(-50%, -50%) scale(1.045); }
-    }
-
-    @keyframes tapHint {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-3px, -3px) scale(0.92); }
     }
 
     .envelope-card-unit.opened .wax-seal-botanical,
@@ -759,20 +740,22 @@
     .btn-solid {
       display: inline-block;
       width: 100%;
-      padding: 16px 28px;
+      padding: 17px 28px;
       border: 1px solid var(--leaf-dark);
       background: var(--leaf-dark);
       color: var(--bg-main);
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.24em;
       transition: all 0.35s ease;
       cursor: pointer;
     }
 
     .btn-solid:hover {
-      background: transparent;
-      color: var(--leaf-dark);
+      background: #35432C;
+      border-color: #35432C;
+      color: #F7F5EF;
+      box-shadow: 0 10px 24px rgba(69, 85, 58, 0.22);
     }
 
     section {
@@ -993,7 +976,7 @@
     }
 
     /* ==========================================
-       ТАЙМИНГ В СТИЛЕ РЕФЕРЕНСА (ВОЛНИСТАЯ ЛИНИЯ + АНИМИРОВАННАЯ ТОЧКА ПО СКРОЛЛУ)
+       ТАЙМИНГ В СТИЛЕ РЕФЕРЕНСА
        ========================================== */
     .timing-section {
       background:
@@ -1091,7 +1074,7 @@
     }
 
     /* ==========================================
-       ЛОКАЦИЯ (БЕЗ КАРТЫ — ФОТО + КНОПКА ПОСМОТРЕТЬ НА КАРТЕ)
+       ЛОКАЦИЯ
        ========================================== */
     .venue-section {
       background:
@@ -1198,6 +1181,9 @@
       color: var(--text-muted);
     }
 
+    /* ==========================================
+       АНКЕТА ГОСТЯ (RSVP) — БОТАНИЧЕСКАЯ КАРТОЧКА В ТОН САЙТА (БЕЗ БЕЛОГО ФОНА)
+       ========================================== */
     .rsvp-wrap {
       background:
         radial-gradient(circle at 50% 20%, rgba(143, 161, 130, 0.24) 0%, transparent 60%),
@@ -1205,104 +1191,223 @@
     }
 
     .rsvp-box {
-      max-width: 620px;
+      max-width: 650px;
       margin: 0 auto;
-      background: #F6F4EE;
-      padding: 52px 44px;
-      border: 1px solid var(--line-color);
-      box-shadow: 0 22px 54px rgba(69, 85, 58, 0.12);
+      position: relative;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(143, 161, 130, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 88% 92%, rgba(118, 138, 102, 0.18) 0%, transparent 45%),
+        linear-gradient(160deg, #EAE4D7 0%, #DFD8C8 100%);
+      padding: 54px 46px;
+      border: 1px solid rgba(69, 85, 58, 0.26);
+      box-shadow:
+        0 24px 56px rgba(69, 85, 58, 0.14),
+        inset 0 0 0 8px rgba(239, 236, 228, 0.42),
+        inset 0 0 0 9px rgba(69, 85, 58, 0.16);
+    }
+
+    .rsvp-card-head {
+      text-align: center;
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(69, 85, 58, 0.18);
+    }
+
+    .rsvp-card-monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.55rem;
+      color: var(--leaf-dark);
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+    }
+
+    .rsvp-card-sub {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--text-muted);
     }
 
     .field {
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
-    .field label {
+    .field-label {
       display: block;
       font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
-      color: var(--text-main);
+      letter-spacing: 0.2em;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--leaf-dark);
     }
 
     .input-line {
       width: 100%;
-      padding: 12px 0;
-      border: none;
-      border-bottom: 1px solid var(--line-color);
-      background: transparent;
+      padding: 13px 16px;
+      border: 1px solid rgba(69, 85, 58, 0.22);
+      background: rgba(239, 236, 228, 0.55);
       font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 300;
       color: var(--text-main);
-      transition: border-color 0.3s;
+      transition: all 0.3s ease;
       border-radius: 0;
+    }
+
+    .input-line::placeholder {
+      color: rgba(89, 85, 78, 0.7);
     }
 
     .input-line:focus {
       outline: none;
-      border-bottom-color: var(--leaf-dark);
+      border-color: var(--leaf-dark);
+      background: rgba(239, 236, 228, 0.85);
+      box-shadow: 0 4px 16px rgba(69, 85, 58, 0.08);
     }
 
-    .radio-row {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      padding-top: 6px;
+    /* Красивые карточки-переключатели присутствия */
+    .attendance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
-    .radio-option {
+    .choice-card {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 0.9rem;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid rgba(69, 85, 58, 0.22);
+      background: rgba(239, 236, 228, 0.48);
+      cursor: pointer;
+      transition: all 0.28s ease;
+      font-size: 0.88rem;
+      color: var(--text-main);
+    }
+
+    .choice-card:hover {
+      border-color: var(--leaf-dark);
+      background: rgba(239, 236, 228, 0.78);
+    }
+
+    .choice-card input {
+      accent-color: var(--leaf-dark);
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
       cursor: pointer;
     }
 
-    .radio-option input {
+    .choice-card:has(input:checked) {
+      border-color: var(--leaf-dark);
+      background: rgba(95, 113, 82, 0.15);
+      box-shadow: inset 0 0 0 1px var(--leaf-dark);
+    }
+
+    /* Раздельные плитки для выбора каждого напитка */
+    .drinks-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .drink-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid rgba(69, 85, 58, 0.22);
+      background: rgba(239, 236, 228, 0.48);
+      cursor: pointer;
+      transition: all 0.28s ease;
+      font-size: 0.86rem;
+      color: var(--text-main);
+    }
+
+    .drink-pill:hover {
+      border-color: var(--leaf-dark);
+      background: rgba(239, 236, 228, 0.78);
+    }
+
+    .drink-pill input {
       accent-color: var(--leaf-dark);
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .drink-pill:has(input:checked) {
+      border-color: var(--leaf-dark);
+      background: rgba(95, 113, 82, 0.16);
+      box-shadow: inset 0 0 0 1px var(--leaf-dark);
+      color: var(--leaf-dark);
+      font-weight: 400;
     }
 
     .success-msg {
       display: none;
       text-align: center;
-      padding: 32px 0;
+      padding: 36px 16px;
     }
 
     .success-msg h3 {
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       color: var(--leaf-dark);
       margin-bottom: 12px;
     }
 
     .success-msg p {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
     }
 
+    /* ==========================================
+       ПОДВАЛ (FOOTER) В ЕДИНОЙ СТИЛИСТИКЕ САЙТА
+       ========================================== */
     footer {
-      background: var(--bg-dark);
-      color: var(--bg-main);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(143, 161, 130, 0.26) 0%, transparent 65%),
+        linear-gradient(180deg, #E3DDD0 0%, #D7CFC0 100%);
+      color: var(--text-main);
       text-align: center;
-      padding: 64px 20px;
+      padding: 72px 20px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-ornament {
+      width: 160px;
+      height: 28px;
+      margin: 0 auto 14px;
+      color: var(--leaf-dark);
+      opacity: 0.75;
     }
 
     .footer-names {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem;
+      font-size: clamp(2.4rem, 7vw, 3.2rem);
       font-weight: 300;
       letter-spacing: 0.04em;
+      color: var(--text-main);
       margin-bottom: 10px;
     }
 
+    .footer-names em {
+      font-style: italic;
+      color: var(--accent);
+      margin: 0 6px;
+    }
+
     .footer-date {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       text-transform: uppercase;
       letter-spacing: 0.28em;
-      opacity: 0.65;
+      color: var(--leaf-dark);
+      font-weight: 500;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1359,7 +1464,6 @@
         border-bottom: none;
       }
 
-      /* Мобильная адаптация волнистого тайминга */
       .timeline-wave-svg {
         left: 26px;
         transform: none;
@@ -1387,7 +1491,11 @@
       }
 
       .rsvp-box {
-        padding: 28px 18px;
+        padding: 34px 20px;
+      }
+      .attendance-grid,
+      .drinks-grid {
+        grid-template-columns: 1fr;
       }
       .botanical-branch {
         width: 190px;
@@ -1414,6 +1522,7 @@
         <div class="env-bottom-flap"></div>
         <div class="env-top-flap"></div>
 
+        <!-- Инициалы М & Д зеленого цвета -->
         <div class="embossed-monogram" aria-hidden="true">
           <span class="letter-m">М</span>
           <span class="amp-mark">&amp;</span>
@@ -1475,18 +1584,15 @@
           </div>
         </div>
 
+        <!-- Подсказка без иконки пальца -->
         <div class="seal-prompt-arc">
-          <svg viewBox="0 0 210 64">
+          <svg viewBox="0 0 210 54">
             <defs>
-              <path id="sealCurve" d="M 32,14 Q 105,36 178,14" fill="none"/>
+              <path id="sealCurve" d="M 32,14 Q 105,34 178,14" fill="none"/>
             </defs>
             <text class="seal-arc-text">
               <textPath href="#sealCurve" startOffset="50%" text-anchor="middle">НАЖМИТЕ СЮДА</textPath>
             </text>
-          </svg>
-          <svg class="cursor-pointer-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.5 3.5C8.5 2.67 9.17 2 10 2C10.83 2 11.5 2.67 11.5 3.5V10.5H12.2C12.7 10.5 13.15 10.72 13.45 11.08L18.65 13.2C19.35 13.48 19.75 14.22 19.58 14.95L18.45 19.85C18.28 20.58 17.62 21.1 16.87 21.1H10.4C9.75 21.1 9.14 20.8 8.74 20.28L5.2 15.65C4.72 15.02 4.82 14.12 5.42 13.6C5.98 13.12 6.8 13.15 7.32 13.67L8.5 14.85V3.5Z"/>
-            <path d="M5.5 5.5L3.5 3.5M14.5 5.5L16.5 3.5M10 1.2V0.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
 
@@ -1587,7 +1693,8 @@
       <div class="hero-side-info hero-anim-side-l">17 Июля 2027</div>
       <div class="hero-photo hero-anim-photo">
         <img
-          src="https://i.pinimg.com/736x/04/61/ec/0461ec7c8d8b5245530b7f8ce926221f.jpg";
+          src="./images/hero.jpg"
+          onerror="this.onerror=null;this.style.display='none';"
           alt="Максим и Дарья">
       </div>
       <div class="hero-side-info hero-anim-side-r">Суббота • 15:30</div>
@@ -1602,8 +1709,8 @@
       <div class="letter-layout">
         <div class="letter-photo reveal-text">
           <img
-            src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=900"
-            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85';"
+            src="./images/letter.jpg"
+            onerror="this.onerror=null;this.style.display='none';"
             alt="История любви">
         </div>
         <div class="letter-body">
@@ -1718,7 +1825,7 @@
     </div>
   </section>
 
-  <!-- 4. Тайминг дня (волнистая линия + анимация точки по скроллу сверху вниз) -->
+  <!-- 4. Тайминг дня -->
   <section id="timing" class="timing-section">
     <div class="container">
       <div class="section-head">
@@ -1733,7 +1840,6 @@
         </svg>
 
         <div class="timeline-items">
-          <!-- Шаг 1: слева -->
           <div class="timeline-step">
             <div class="timeline-card reveal-left">
               <div class="timeline-icon" aria-hidden="true">
@@ -1750,7 +1856,6 @@
             </div>
           </div>
 
-          <!-- Шаг 2: справа -->
           <div class="timeline-step">
             <div class="timeline-card reveal-right">
               <div class="timeline-icon" aria-hidden="true">
@@ -1766,7 +1871,6 @@
             </div>
           </div>
 
-          <!-- Шаг 3: слева -->
           <div class="timeline-step">
             <div class="timeline-card reveal-left">
               <div class="timeline-icon" aria-hidden="true">
@@ -1784,7 +1888,6 @@
             </div>
           </div>
 
-          <!-- Шаг 4: справа -->
           <div class="timeline-step">
             <div class="timeline-card reveal-right">
               <div class="timeline-icon" aria-hidden="true">
@@ -1807,7 +1910,7 @@
     </div>
   </section>
 
-  <!-- 5. Локация (Ресторан «Звёздный ключ» + кнопка Посмотреть на карте) -->
+  <!-- 5. Локация -->
   <section id="venue" class="venue-section">
     <div class="container">
       <div class="section-head">
@@ -1818,8 +1921,8 @@
       <div class="venue-grid">
         <div class="venue-img reveal-text">
           <img
-            src="https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=900"
-            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85';"
+            src="./images/venue.jpg"
+            onerror="this.onerror=null;this.style.display='none';"
             alt="Ресторан Звёздный ключ">
         </div>
 
@@ -1900,46 +2003,59 @@
       </div>
 
       <div class="rsvp-box reveal-text delay-2">
+        <div class="rsvp-card-head">
+          <div class="rsvp-card-monogram">М &amp; Д</div>
+          <div class="rsvp-card-sub">Карточка подтверждения • 17.07.2027</div>
+        </div>
+
         <form id="weddingForm">
           <div class="field">
-            <label for="guestName">Имя и фамилия</label>
+            <label class="field-label" for="guestName">Имя и фамилия</label>
             <input type="text" id="guestName" class="input-line" placeholder="Например: Алексей Смирнов" required>
           </div>
 
           <div class="field">
-            <label>Присутствие на торжестве</label>
-            <div class="radio-row">
-              <label class="radio-option">
+            <span class="field-label">Присутствие на торжестве</span>
+            <div class="attendance-grid">
+              <label class="choice-card">
                 <input type="radio" name="attendance" value="Да, с удовольствием приду" checked>
-                С удовольствием приду
+                <span>С удовольствием приду</span>
               </label>
-              <label class="radio-option">
+              <label class="choice-card">
                 <input type="radio" name="attendance" value="К сожалению, не смогу">
-                К сожалению, не смогу
+                <span>К сожалению, не смогу</span>
               </label>
             </div>
           </div>
 
           <div class="field">
-            <label for="drinks">Предпочтения по напиткам</label>
-            <select id="drinks" class="input-line">
-              <option value="Игристое / Белое вино">Игристое / Белое вино</option>
-              <option value="Красное вино">Красное вино</option>
-              <option value="Крепкие напитки">Крепкие напитки</option>
-              <option value="Безалкогольные напитки">Только безалкогольные напитки</option>
-            </select>
+            <span class="field-label">Предпочтения по напиткам</span>
+            <div class="drinks-grid">
+              <label class="drink-pill">
+                <input type="checkbox" name="drinks" value="Игристое" checked>
+                <span>Игристое</span>
+              </label>
+              <label class="drink-pill">
+                <input type="checkbox" name="drinks" value="Белое вино">
+                <span>Белое вино</span>
+              </label>
+              <label class="drink-pill">
+                <input type="checkbox" name="drinks" value="Красное вино">
+                <span>Красное вино</span>
+              </label>
+              <label class="drink-pill">
+                <input type="checkbox" name="drinks" value="Крепкие напитки">
+                <span>Крепкие напитки</span>
+              </label>
+              <label class="drink-pill" style="grid-column: 1 / -1;">
+                <input type="checkbox" name="drinks" value="Безалкогольные напитки">
+                <span>Безалкогольные напитки</span>
+              </label>
+            </div>
           </div>
 
           <div class="field">
-            <label for="transfer">Понадобится ли трансфер?</label>
-            <select id="transfer" class="input-line">
-              <option value="Да, нужен трансфер">Да, поеду на общем трансфере</option>
-              <option value="Нет, доберусь самостоятельно">Нет, доберусь самостоятельно</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="comment">Комментарий или пожелания</label>
+            <label class="field-label" for="comment">Комментарий или пожелания</label>
             <input type="text" id="comment" class="input-line" placeholder="Если вы будете с парой или есть аллергии">
           </div>
 
@@ -1954,9 +2070,16 @@
     </div>
   </section>
 
+  <!-- Подвал в едином ботаническом стиле сайта -->
   <footer>
-    <div class="footer-names reveal-text">Максим & Дарья</div>
-    <div class="footer-date reveal-eyebrow delay-1">17.07.2027 • До скорой встречи</div>
+    <svg class="footer-ornament reveal-text" viewBox="0 0 180 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 16 H74 M106 16 H168" stroke="currentColor" stroke-width="1" stroke-opacity="0.45"/>
+      <path d="M90 25 C84 18 82 11 90 6 C98 11 96 18 90 25 Z" fill="currentColor" fill-opacity="0.7"/>
+      <path d="M84 18 C77 18 74 13 79 11 C83 9 85 14 84 18 Z" fill="currentColor" fill-opacity="0.55"/>
+      <path d="M96 18 C103 18 106 13 101 11 C97 9 95 14 96 18 Z" fill="currentColor" fill-opacity="0.55"/>
+    </svg>
+    <div class="footer-names reveal-text delay-1">Максим <em>&amp;</em> Дарья</div>
+    <div class="footer-date reveal-eyebrow delay-2">17.07.2027 • До скорой встречи</div>
   </footer>
 
   <script>
@@ -1992,7 +2115,6 @@
       }
     });
 
-    // Наблюдатель за появлением текста при скролле
     const revealElements = document.querySelectorAll('.reveal-text, .reveal-eyebrow, .reveal-left, .reveal-right');
     if ('IntersectionObserver' in window) {
       const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -2012,10 +2134,7 @@
       revealElements.forEach(el => el.classList.add('is-visible'));
     }
 
-    // Таймер обратного отсчёта с плавным импульсом смены цифр
     const WEDDING_DATE = new Date(2027, 6, 17, 15, 30, 0).getTime();
-    const TELEGRAM_BOT_TOKEN = '9063254657:AAHWHTOgwowIG_Aj3DX_zy8PnBl3EgIbdoE';
-    const TELEGRAM_CHAT_ID = '709942397';
 
     function animateDigitChange(el, newVal) {
       if (el.textContent !== newVal) {
@@ -2064,7 +2183,6 @@
       }
     });
 
-    // Анимация движения точки по волнистой линии тайминга при скролле сверху вниз
     const waveWrap = document.getElementById('timelineWaveWrap');
     const wavePath = document.getElementById('timelineWavePath');
     const scrollDot = document.getElementById('scrollWaveDot');
@@ -2101,35 +2219,20 @@
     window.addEventListener('resize', updateScrollWaveDot, { passive: true });
     updateScrollWaveDot();
 
-    // Отправка анкеты в Telegram
-    async function sendTelegramNotification(text) {
-      const apiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: text,
-            parse_mode: 'HTML'
-          })
-        });
-        if (response.ok) {
-          return { ok: true };
-        }
-        const errData = await response.json().catch(() => ({}));
-        return { ok: false, description: errData.description || `HTTP ${response.status}` };
-      } catch (err) {
-        const params = new URLSearchParams({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: text,
-          parse_mode: 'HTML'
-        });
-        await fetch(`${apiUrl}?${params.toString()}`, { mode: 'no-cors' });
-        return { ok: true };
+    // ==========================================================
+    // НАСТРОЙКИ GOOGLE ФОРМЫ (вставьте данные из вашей формы)
+    // ==========================================================
+    const GOOGLE_FORM_CONFIG = {
+      // 1. Ссылка вида: https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМЫ/formResponse
+      formActionUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe2M9mWJvRl-Xomp1J3K6myitFrIXNfVQ6bjKlnnRiHbwx0CQ/formResponse',
+      // 2. ID полей (entry.XXXXXXX) из предзаполненной ссылки Google Формы
+      fields: {
+  	name: 'entry.2003886927',        // Поле: Имя и фамилия
+        attendance: 'entry.615925843',   // Поле: Присутствие на торжестве
+        drinks: 'entry.147352854',       // Поле: Предпочтения по напиткам
+        comment: 'entry.2088592239'      // Поле: Комментарий или пожелания
       }
-    }
+    };
 
     document.getElementById('weddingForm').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -2137,42 +2240,52 @@
       const btn = this.querySelector('button[type="submit"]');
       const name = document.getElementById('guestName').value.trim();
       const attendance = document.querySelector('input[name="attendance"]:checked').value;
-      const drinks = document.getElementById('drinks').value;
-      const transfer = document.getElementById('transfer').value;
+      const checkedDrinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked')).map(el => el.value);
       const comment = document.getElementById('comment').value.trim() || 'Без комментариев';
 
       btn.disabled = true;
       btn.textContent = 'Отправка...';
 
-      const message =
-        `🌿 <b>Новая анкета гостя (Максим & Дарья • 17.07.2027)</b>
+      const formData = new URLSearchParams();
+      formData.append(GOOGLE_FORM_CONFIG.fields.name, name);
+      formData.append(GOOGLE_FORM_CONFIG.fields.attendance, attendance);
 
-` +
-        `👤 <b>Гость:</b> ${name}
-` +
-        `✅ <b>Статус:</b> ${attendance}
-` +
-        `🥂 <b>Напитки:</b> ${drinks}
-` +
-        `🚌 <b>Трансфер:</b> ${transfer}
-` +
-        `💬 <b>Комментарий:</b> ${comment}`;
+      // Если в Google Форме вопрос с напитками сделан типом «Несколько из списка» (чекбоксы),
+      // передаём каждый выбранный напиток отдельным параметром с тем же entry.XXXX
+      if (checkedDrinks.length > 0) {
+        checkedDrinks.forEach(drink => {
+          formData.append(GOOGLE_FORM_CONFIG.fields.drinks, drink);
+        });
+      } else {
+        formData.append(GOOGLE_FORM_CONFIG.fields.drinks, 'Не указано');
+      }
 
-      try {
-        const result = await sendTelegramNotification(message);
-        if (result.ok) {
-          this.style.display = 'none';
-          document.getElementById('rsvpSuccess').style.display = 'block';
-        } else {
-          alert(`Ошибка Telegram: ${result.description}. Убедитесь, что вы нажали /start в боте.`);
+      formData.append(GOOGLE_FORM_CONFIG.fields.comment, comment);
+
+      const isConfigured = !GOOGLE_FORM_CONFIG.formActionUrl.includes('ВСТАВЬТЕ_ID_ВАШЕЙ_ФОРМЫ');
+
+      if (isConfigured) {
+        try {
+          await fetch(GOOGLE_FORM_CONFIG.formActionUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: formData.toString()
+          });
+        } catch (err) {
+          alert('Не удалось отправить анкету. Проверьте подключение к интернету и попробуйте ещё раз.');
           btn.disabled = false;
           btn.textContent = 'Отправить анкету';
+          return;
         }
-      } catch (err) {
-        alert('Не удалось отправить анкету. Проверьте подключение к интернету.');
-        btn.disabled = false;
-        btn.textContent = 'Отправить анкету';
+      } else {
+        console.warn('Google Форма ещё не привязана: укажите formActionUrl и entry ID в GOOGLE_FORM_CONFIG.');
       }
+
+      this.style.display = 'none';
+      document.getElementById('rsvpSuccess').style.display = 'block';
     });
   </script>
 </body>
