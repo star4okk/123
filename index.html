@@ -523,7 +523,7 @@
     }
 
     /* ==========================================
-       БОТАНИЧЕСКИЙ ФОНОВЫЙ СЛОЙ
+       БОТАНИЧЕСКИЙ ФОНОВЫЙ СЛОЙ (./images/photo3.png)
        ========================================== */
     .botanical-layer {
       position: fixed;
@@ -535,16 +535,56 @@
 
     .botanical-branch {
       position: absolute;
-      opacity: 0.26;
-      transition: transform 0.8s ease;
+      height: auto;
+      opacity: 0.85;
+      filter: drop-shadow(0 10px 22px rgba(45, 56, 38, 0.10));
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
-    .branch-tl { top: -24px; left: -34px; width: 340px; transform: rotate(10deg); }
-    .branch-tr { top: 32px; right: -44px; width: 350px; transform: scaleX(-1) rotate(16deg); }
-    .branch-ml { top: 44%; left: -55px; width: 310px; transform: rotate(32deg); }
-    .branch-mr { top: 60%; right: -50px; width: 320px; transform: scaleX(-1) rotate(-24deg); }
-    .branch-bl { bottom: -32px; left: -28px; width: 340px; transform: rotate(-14deg); }
-    .branch-br { bottom: -24px; right: -34px; width: 350px; transform: scaleX(-1) rotate(-10deg); }
+    /* Ветка в photo3.png растёт из левого нижнего угла вверх-вправо — поворачиваем и отражаем так, чтобы стебель уходил за край экрана */
+    .branch-tl {
+      top: -28px;
+      left: -48px;
+      width: 340px;
+      transform: rotate(108deg);
+    }
+
+    .branch-tr {
+      top: 18px;
+      right: -52px;
+      width: 350px;
+      transform: scaleX(-1) rotate(112deg);
+    }
+
+    .branch-ml {
+      top: 46%;
+      left: -58px;
+      width: 310px;
+      transform: rotate(62deg);
+    }
+
+    .branch-mr {
+      top: 52%;
+      right: -58px;
+      width: 315px;
+      transform: scaleX(-1) rotate(68deg);
+    }
+
+    .branch-bl {
+      bottom: -36px;
+      left: -42px;
+      width: 340px;
+      transform: rotate(14deg);
+    }
+
+    .branch-br {
+      bottom: -36px;
+      right: -42px;
+      width: 340px;
+      transform: scaleX(-1) rotate(14deg);
+    }
 
     nav, header, section, footer {
       position: relative;
@@ -625,10 +665,7 @@
       justify-content: center;
       text-align: center;
       border-bottom: 1px solid var(--line-soft);
-      background:
-        radial-gradient(circle at 50% 44%, rgba(255, 253, 248, 0.72) 0%, transparent 68%),
-        radial-gradient(circle at 18% 76%, rgba(143, 161, 130, 0.16) 0%, transparent 55%),
-        linear-gradient(180deg, #F6F3EC 0%, #EFECE2 55%, #E8E2D4 100%);
+      background: transparent;
     }
 
     .hero-sheet {
@@ -896,8 +933,7 @@
        ========================================== */
     .countdown-details-v2 {
       position: relative;
-      background:
-        linear-gradient(180deg, rgba(235, 230, 218, 0.92) 0%, rgba(245, 242, 234, 0.84) 18%, rgba(245, 242, 234, 0.80) 100%);
+      background: rgba(246, 243, 235, 0.45);
       padding: 108px 24px 104px;
       border-bottom: 1px solid rgba(143, 130, 94, 0.24);
       text-align: center;
@@ -1282,9 +1318,7 @@
     .timing-section {
       padding-top: 76px;
       padding-bottom: 76px;
-      background:
-        linear-gradient(125deg, rgba(255, 253, 248, 0.45) 0%, transparent 48%),
-        rgba(248, 246, 240, 0.85);
+      background: rgba(248, 246, 240, 0.40);
     }
 
     .timeline-wave-wrap {
@@ -1464,9 +1498,7 @@
        6. ДРЕСС-КОД И ПОЖЕЛАНИЯ О ПОДАРКАХ
        ========================================== */
     .dresscode-gifts-section {
-      background:
-        radial-gradient(circle at 50% 45%, rgba(255, 253, 248, 0.55) 0%, transparent 70%),
-        rgba(248, 246, 240, 0.88);
+      background: rgba(248, 246, 240, 0.40);
     }
 
     .dg-split-grid {
@@ -1580,9 +1612,7 @@
        7. АНКЕТА ГОСТЯ (RSVP)
        ========================================== */
     .rsvp-wrap {
-      background:
-        radial-gradient(circle at 50% 20%, rgba(143, 161, 130, 0.20) 0%, transparent 60%),
-        rgba(239, 235, 226, 0.88);
+      background: rgba(239, 235, 226, 0.45);
     }
 
     .rsvp-box {
@@ -1887,9 +1917,15 @@
         grid-template-columns: 1fr;
       }
       .botanical-branch {
-        width: 190px;
-        opacity: 0.20;
+        width: 195px;
+        opacity: 0.72;
       }
+      .branch-tl { top: -12px; left: -38px; }
+      .branch-tr { top: 24px; right: -40px; }
+      .branch-ml { top: 46%; left: -46px; width: 175px; }
+      .branch-mr { top: 54%; right: -46px; width: 175px; }
+      .branch-bl { bottom: -22px; left: -34px; }
+      .branch-br { bottom: -22px; right: -34px; }
     }
   </style>
 </head>
@@ -1988,71 +2024,14 @@
     </div>
   </div>
 
-  <!-- ФОНОВЫЙ СЛОЙ: ЭВКАЛИПТ И АТЛАСНЫЕ ЛЕНТЫ -->
+  <!-- ФОНОВЫЙ СЛОЙ: ЭВКАЛИПТОВЫЕ ВЕТВИ (./images/photo3.png) -->
   <div class="botanical-layer" aria-hidden="true">
-    <svg style="position:fixed;inset:0;width:100%;height:100%;" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M-60 220C190 160 360 340 620 260C860 185 1030 70 1260 140" stroke="#8FA182" stroke-width="18" stroke-opacity="0.12" stroke-linecap="round"/>
-      <path d="M-60 232C190 172 360 352 620 272C860 197 1030 82 1260 152" stroke="#E6DEC8" stroke-width="10" stroke-opacity="0.30" stroke-linecap="round"/>
-      <path d="M-80 690C220 610 430 790 740 700C960 635 1110 540 1280 600" stroke="#8FA182" stroke-width="20" stroke-opacity="0.10" stroke-linecap="round"/>
-      <path d="M-80 704C220 624 430 804 740 714C960 649 1110 554 1280 614" stroke="#E6DEC8" stroke-width="11" stroke-opacity="0.28" stroke-linecap="round"/>
-    </svg>
-
-    <svg class="botanical-branch branch-tl" viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M25 10C75 95 135 210 195 395" stroke="#45553A" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M52 58C20 45 5 65 18 85C32 105 55 82 52 58Z" fill="#5F7152"/>
-      <path d="M68 85C105 65 125 82 112 104C98 125 72 108 68 85Z" fill="#768A66"/>
-      <path d="M92 135C52 122 32 145 48 168C64 190 92 162 92 135Z" fill="#45553A"/>
-      <path d="M112 168C154 146 178 166 162 192C146 216 115 196 112 168Z" fill="#5F7152"/>
-      <path d="M135 222C90 212 72 238 92 260C112 282 138 250 135 222Z" fill="#768A66"/>
-      <path d="M155 258C198 238 220 262 202 288C184 312 156 286 155 258Z" fill="#45553A"/>
-      <path d="M174 312C132 308 118 334 138 354C158 372 178 340 174 312Z" fill="#5F7152"/>
-      <path d="M195 395C210 368 235 375 225 400C215 422 192 412 195 395Z" fill="#768A66"/>
-    </svg>
-
-    <svg class="botanical-branch branch-tr" viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M25 10C75 95 135 210 195 395" stroke="#45553A" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M52 58C20 45 5 65 18 85C32 105 55 82 52 58Z" fill="#768A66"/>
-      <path d="M68 85C105 65 125 82 112 104C98 125 72 108 68 85Z" fill="#45553A"/>
-      <path d="M92 135C52 122 32 145 48 168C64 190 92 162 92 135Z" fill="#5F7152"/>
-      <path d="M112 168C154 146 178 166 162 192C146 216 115 196 112 168Z" fill="#768A66"/>
-      <path d="M135 222C90 212 72 238 92 260C112 282 138 250 135 222Z" fill="#45553A"/>
-      <path d="M155 258C198 238 220 262 202 288C184 312 156 286 155 258Z" fill="#5F7152"/>
-      <path d="M174 312C132 308 118 334 138 354C158 372 178 340 174 312Z" fill="#768A66"/>
-    </svg>
-
-    <svg class="botanical-branch branch-ml" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 360C70 265 130 170 230 30" stroke="#5F7152" stroke-width="2" stroke-linecap="round"/>
-      <path d="M55 295C25 275 35 245 62 252C88 258 78 288 55 295Z" fill="#768A66"/>
-      <path d="M85 250C118 265 135 242 115 222C95 202 78 228 85 250Z" fill="#45553A"/>
-      <path d="M122 195C88 175 98 142 128 150C155 158 145 188 122 195Z" fill="#5F7152"/>
-      <path d="M156 145C192 158 208 132 186 112C164 92 148 120 156 145Z" fill="#768A66"/>
-      <path d="M192 92C162 72 172 42 200 50C226 58 214 86 192 92Z" fill="#45553A"/>
-    </svg>
-
-    <svg class="botanical-branch branch-mr" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 360C70 265 130 170 230 30" stroke="#5F7152" stroke-width="2" stroke-linecap="round"/>
-      <path d="M55 295C25 275 35 245 62 252C88 258 78 288 55 295Z" fill="#45553A"/>
-      <path d="M85 250C118 265 135 242 115 222C95 202 78 228 85 250Z" fill="#768A66"/>
-      <path d="M122 195C88 175 98 142 128 150C155 158 145 188 122 195Z" fill="#5F7152"/>
-      <path d="M156 145C192 158 208 132 186 112C164 92 148 120 156 145Z" fill="#45553A"/>
-    </svg>
-
-    <svg class="botanical-branch branch-bl" viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M25 410C75 325 135 210 195 25" stroke="#45553A" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M52 362C20 375 5 355 18 335C32 315 55 338 52 362Z" fill="#5F7152"/>
-      <path d="M68 335C105 355 125 338 112 316C98 295 72 312 68 335Z" fill="#768A66"/>
-      <path d="M92 285C52 298 32 275 48 252C64 230 92 258 92 285Z" fill="#45553A"/>
-      <path d="M112 252C154 274 178 254 162 228C146 204 115 224 112 252Z" fill="#5F7152"/>
-      <path d="M135 198C90 208 72 182 92 160C112 138 138 170 135 198Z" fill="#768A66"/>
-    </svg>
-
-    <svg class="botanical-branch branch-br" viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M25 410C75 325 135 210 195 25" stroke="#45553A" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M52 362C20 375 5 355 18 335C32 315 55 338 52 362Z" fill="#768A66"/>
-      <path d="M68 335C105 355 125 338 112 316C98 295 72 312 68 335Z" fill="#45553A"/>
-      <path d="M92 285C52 298 32 275 48 252C64 230 92 258 92 285Z" fill="#5F7152"/>
-      <path d="M112 252C154 274 178 254 162 228C146 204 115 224 112 252Z" fill="#768A66"/>
-    </svg>
+    <img src="./images/photo3.png" alt="" class="botanical-branch branch-tl" decoding="async" />
+    <img src="./images/photo3.png" alt="" class="botanical-branch branch-tr" decoding="async" />
+    <img src="./images/photo3.png" alt="" class="botanical-branch branch-ml" decoding="async" />
+    <img src="./images/photo3.png" alt="" class="botanical-branch branch-mr" decoding="async" />
+    <img src="./images/photo3.png" alt="" class="botanical-branch branch-bl" decoding="async" />
+    <img src="./images/photo3.png" alt="" class="botanical-branch branch-br" decoding="async" />
   </div>
 
   <!-- Навигация -->
@@ -2129,32 +2108,7 @@
       </div>
     </div>
 
-    <svg class="welcome-v2-branch" viewBox="0 0 320 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="leafLightGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#F6F5EF"/>
-          <stop offset="55%" stop-color="#D9DFCE"/>
-          <stop offset="100%" stop-color="#98A58B"/>
-        </linearGradient>
-        <linearGradient id="leafSageGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#E7ECDE"/>
-          <stop offset="60%" stop-color="#B7C3AB"/>
-          <stop offset="100%" stop-color="#768769"/>
-        </linearGradient>
-      </defs>
-      <path d="M312 12 C 265 110, 215 210, 142 332" stroke="#8F9D82" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M276 82 C 238 42, 185 38, 166 56 C 184 82, 232 95, 276 82 Z" fill="url(#leafLightGrad)" stroke="#89977C" stroke-width="0.8"/>
-      <path d="M274 81 C 236 66, 200 60, 168 56" stroke="#89977C" stroke-width="0.9" stroke-opacity="0.75"/>
-      <path d="M262 114 C 296 92, 318 102, 316 128 C 296 144, 274 134, 262 114 Z" fill="url(#leafSageGrad)" stroke="#7F8E73" stroke-width="0.8"/>
-      <path d="M236 164 C 192 128, 134 128, 114 148 C 138 176, 190 184, 236 164 Z" fill="url(#leafLightGrad)" stroke="#89977C" stroke-width="0.8"/>
-      <path d="M234 163 C 192 152, 152 149, 116 148" stroke="#89977C" stroke-width="0.9" stroke-opacity="0.75"/>
-      <path d="M214 205 C 264 196, 304 220, 308 248 C 274 256, 234 238, 214 205 Z" fill="url(#leafSageGrad)" stroke="#7F8E73" stroke-width="0.8"/>
-      <path d="M216 206 C 254 218, 282 232, 306 247" stroke="#7F8E73" stroke-width="0.9" stroke-opacity="0.75"/>
-      <path d="M188 254 C 152 246, 126 266, 126 292 C 152 296, 178 280, 188 254 Z" fill="url(#leafSageGrad)" stroke="#7F8E73" stroke-width="0.8"/>
-      <path d="M168 292 C 206 296, 234 322, 234 352 C 202 350, 178 326, 168 292 Z" fill="url(#leafLightGrad)" stroke="#89977C" stroke-width="0.8"/>
-      <path d="M169 294 C 194 314, 214 332, 233 350" stroke="#89977C" stroke-width="0.9" stroke-opacity="0.75"/>
-      <path d="M144 330 C 122 344, 114 364, 122 376 C 142 372, 152 352, 144 330 Z" fill="url(#leafLightGrad)" stroke="#89977C" stroke-width="0.8"/>
-    </svg>
+    <img src="./images/photo3.png" alt="" class="welcome-v2-branch" style="transform: scaleX(-1) rotate(118deg);" aria-hidden="true" />
   </section>
 
   <!-- 3. ОБРАТНЫЙ ОТСЧЁТ И ДЕТАЛИ -->
