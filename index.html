@@ -779,7 +779,7 @@
     .hero-v2-date {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.5rem, 4.2vw, 1.95rem);
-      letter-spacing: 0.24em;
+      letter-spacing: 0.1em;
       color: var(--sage-deep);
       margin-bottom: 0;
     }
@@ -874,11 +874,11 @@
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(0.74rem, 1.05vw, 0.83rem);
       font-weight: 300;
-      line-height: 1.95;
+      line-height: 1.85;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: rgba(248, 246, 240, 0.94);
-      margin: 0 0 20px 0;
+      margin: 0 0 10px 0;
     }
 
     .welcome-v2-signature {
@@ -889,7 +889,7 @@
       letter-spacing: 0.08em;
       line-height: 1.55;
       color: #F8F6F0;
-      margin-top: 26px;
+      margin-top: 16px;
     }
 
     .welcome-v2-signature span {
@@ -1668,29 +1668,30 @@
       color: var(--sage-deep);
     }
 
-    .input-line {
-      width: 100%;
-      padding: 13px 16px;
-      border: none;
-      border-radius: 0;
-      background: transparent;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--text-ink);
-      transition: all 0.3s ease;
-    }
+   .input-line {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(69, 85, 58, 0.28);
+  border-radius: 10px;
+  background: #FFFEFA;
+  box-shadow: inset 0 1px 3px rgba(38, 48, 31, 0.05);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-ink);
+  transition: all 0.3s ease;
+}
 
-    .input-line::placeholder {
-      color: rgba(92, 96, 86, 0.68);
-    }
+.input-line::placeholder {
+  color: rgba(92, 96, 86, 0.72);
+}
 
-    .input-line:focus {
-      outline: none;
-      border-color: var(--sage-deep);
-      background: rgba(255, 253, 249, 0.94);
-      box-shadow: 0 4px 16px rgba(69, 85, 58, 0.08);
-    }
+.input-line:focus {
+  outline: none;
+  border-color: var(--sage-deep);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(69, 85, 58, 0.12);
+}
 
     .attendance-grid {
       display: grid;
@@ -2068,7 +2069,7 @@
           <path d="M23 9 C 22 4, 28 2, 31 6 C 28 9, 25 9, 23 9 Z" fill="currentColor" fill-opacity="0.45"/>
           <path d="M18 11 C 18 15, 23 16, 25 12 C 22 10, 20 10, 18 11 Z" fill="currentColor" fill-opacity="0.45"/>
         </svg>
-        <div class="hero-v2-date hero-anim-side-r">17 . 07 . 2027</div>
+        <div class="hero-v2-date hero-anim-side-r">17.07.2027</div>
         <svg class="hero-date-twig flip hero-anim-side-r" viewBox="0 0 40 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M2 13 C 14 11, 26 8, 38 6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
           <path d="M12 11 C 9 6, 14 3, 18 7 C 16 10, 14 11, 12 11 Z" fill="currentColor" fill-opacity="0.65"/>
@@ -2439,28 +2440,32 @@
 
           <div class="field">
             <span class="field-label">Предпочтения по напиткам</span>
-            <div class="drinks-grid">
-              <label class="drink-pill">
-                <input type="checkbox" name="drinks" value="Игристое">
-                <span>Игристое</span>
-              </label>
-              <label class="drink-pill">
-                <input type="checkbox" name="drinks" value="Белое вино">
-                <span>Белое вино</span>
-              </label>
-              <label class="drink-pill">
-                <input type="checkbox" name="drinks" value="Красное вино">
-                <span>Красное вино</span>
-              </label>
-              <label class="drink-pill">
-                <input type="checkbox" name="drinks" value="Крепкие напитки">
-                <span>Крепкие напитки</span>
-              </label>
-              <label class="drink-pill" style="grid-column: 1 / -1;">
-                <input type="checkbox" name="drinks" value="Безалкогольные напитки">
-                <span>Безалкогольные напитки</span>
-              </label>
-            </div>
+           <div class="drinks-grid">
+  <label class="drink-pill">
+    <input type="checkbox" name="drinks" value="Вино красное" />
+    <span>Вино красное</span>
+  </label>
+  <label class="drink-pill">
+    <input type="checkbox" name="drinks" value="Вино белое" />
+    <span>Вино белое</span>
+  </label>
+  <label class="drink-pill">
+    <input type="checkbox" name="drinks" value="Водка" />
+    <span>Водка</span>
+  </label>
+  <label class="drink-pill">
+    <input type="checkbox" name="drinks" value="Виски" />
+    <span>Виски</span>
+  </label>
+  <label class="drink-pill">
+    <input type="checkbox" name="drinks" value="Шампанское" />
+    <span>Шампанское</span>
+  </label>
+  <label class="drink-pill">
+    <input type="checkbox" name="drinks" value="Безалкогольные напитки" />
+    <span>Безалкогольные напитки</span>
+  </label>
+</div>
           </div>
 
           <div class="field">
