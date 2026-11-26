@@ -2702,24 +2702,19 @@
         return;
       }
       const attendance = checkedAttendanceEl.value;
-      const checkedDrinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked')).map(el => el.value);
+           const checkedDrinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked')).map(el => el.value);
       const comment = document.getElementById('comment').value.trim() || 'Без комментариев';
 
       btn.disabled = true;
       btn.textContent = 'Отправка...';
 
+      // Склеиваем выбранные напитки в одну строку через запятую
+      const drinksString = checkedDrinks.length > 0 ? checkedDrinks.join(', ') : 'Не указано';
+
       const formData = new URLSearchParams();
       formData.append(GOOGLE_FORM_CONFIG.fields.name, name);
       formData.append(GOOGLE_FORM_CONFIG.fields.attendance, attendance);
-
-      if (checkedDrinks.length > 0) {
-        checkedDrinks.forEach(drink => {
-          formData.append(GOOGLE_FORM_CONFIG.fields.drinks, drink);
-        });
-      } else {
-        formData.append(GOOGLE_FORM_CONFIG.fields.drinks, 'Не указано');
-      }
-
+      formData.append(GOOGLE_FORM_CONFIG.fields.drinks, drinksString); // Отправляем одной строкой
       formData.append(GOOGLE_FORM_CONFIG.fields.comment, comment);
 
       const isConfigured = !GOOGLE_FORM_CONFIG.formActionUrl.includes('ВСТАВЬТЕ_ID_ВАШЕЙ_ФОРМЫ');
