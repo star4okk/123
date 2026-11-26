@@ -702,9 +702,20 @@
       line-height: 1.05;
       color: var(--brass);
       margin-bottom: 14px;
-      transform: translateX(3px);
+     }
+    /* НОВОЕ ПРАВИЛО: Заставляем буквы быть одинаковой ширины */
+    .mono-letter {
+      display: block;
+      width: 100%;       /* Буква занимает всю ширину контейнера */
+      text-align: center; /* И центрируется внутри себя */
     }
-
+    .hero-v2-monogram .mono-bar {
+      width: 34px;
+      height: 1px;
+      background: var(--brass);
+      margin: 6px 0 7px;
+      opacity: 0.75;
+    }
     .hero-v2-monogram .mono-bar {
       width: 34px;
       height: 1px;
@@ -793,7 +804,7 @@
     }
 
     .hero-v2-heart {
-      color: var(--brass);
+      color: #D94848;
       font-size: 1.15rem;
       line-height: 1;
       opacity: 0.85;
@@ -1985,8 +1996,10 @@
     <div class="hero-sheet">
       <span class="flora olive-rise left hero-olive-l" aria-hidden="true"></span>
       <span class="flora olive-droop right hero-olive-r" aria-hidden="true"></span>
-            <div class="hero-v2-monogram hero-anim-eyebrow">
-        <span>М</span><span class="mono-bar"></span><span>Д</span>
+                <div class="hero-v2-monogram hero-anim-eyebrow">
+        <span class="mono-letter">М</span>
+        <span class="mono-bar"></span>
+        <span class="mono-letter">Д</span>
       </div>
       <div class="hero-v2-vline hero-anim-eyebrow"></div>
 
@@ -2352,7 +2365,7 @@
     <span class="flora olive-spray right narrow pos-bottom" aria-hidden="true"></span>
     <div class="container">
       <div class="section-head">
-           <h2 class="section-title reveal-text delay-1">Анкета гостя</h2>
+           <h2 class="section-title reveal-text delay-1">АНКЕТА ГОСТЯ</h2>
         <p class="section-lead reveal-text delay-2">Пожалуйста, подтвердите своё присутствие до 1 июня 2027 года.</p>
       </div>
 
