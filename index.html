@@ -1870,7 +1870,17 @@
       }
       .venue-img { height: 270px; }
       .venue-details { padding: 28px 20px; }
-
+.cd-v2-detail-col:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: auto; 
+        bottom: -10px; /* Опускаем линию вниз */
+        right: 50%; 
+        transform: translateX(50%); /* Ставим строго по центру */
+        width: 50%; /* Длина линии (50% от ширины блока) */
+        height: 1px; /* Толщина линии */
+        background: rgba(143, 130, 94, 0.34); /* Цвет линии */
+      }
     /*  .timeline-wave-svg {
         left: 26px;
         transform: none;
